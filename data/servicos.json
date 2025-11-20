@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "nome": "Alugar bicicleta ",
+    "descricao": "Aluguel de bicicleta para passeio por dia",
+    "preco": "70"
+  },
+  {
+    "id": 2,
+    "nome": "Manutenção de skates ",
+    "descricao": "Uma manutenção para o seu skate quebrado!",
+    "preco": "200"
+  },
+  {
+    "id": 3,
+    "nome": "Reparos gerais",
+    "preco": "600"
+  }
+]

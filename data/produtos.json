@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "nome": "Bicicleta Nord",
+    "descricao": "Uma bicicleta esportiva muito boa e duradoura",
+    "preco": "1200",
+    "cor": "azul"
+  }
+]

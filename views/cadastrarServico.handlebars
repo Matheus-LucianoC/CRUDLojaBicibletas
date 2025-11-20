@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Cadastrar Serviço</h2>
+    <form action="/servicos" method="POST">
+    <input type="text" name="nome" placeholder="Nome do serviço" required>
+    <input type="text" name="descricao" placeholder="Descrição do serviço" required>
+    <input type="number" name="preco" placeholder="preço do serviço" required>
+    <button type="submit">Salvar</button>
+    </form>
+
+    <a href="/homeServicos">Voltar</a>
+</body>
+</html>

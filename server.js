@@ -12,13 +12,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs.engine({ defaultLayout: false}));
 app.set('view engine', 'handlebars');
 
+
+//=====================================================================================================//
+/////  JSON PESSOAS       ///////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================//
+
 const carregarPessoas = () => {
-    const dados = fs.readFileSync(path.join(__dirname, 'pessoas.json'), 'utf-8');
+    const dados = fs.readFileSync(path.join(__dirname, "./data/pessoas.json"), 'utf-8');
     return JSON.parse(dados);
 };
 
 const salvarPessoas = (pessoas) => {
-    fs.writeFileSync(path.join(__dirname, 'pessoas.json'), JSON.stringify(pessoas, null, 2));
+    fs.writeFileSync(path.join(__dirname, './data/pessoas.json'), JSON.stringify(pessoas, null, 2));
 };
 
 let pessoas = carregarPessoas();
@@ -30,9 +35,76 @@ const reorganizarIDs = () => {
     salvarPessoas(pessoas); 
 };
 
+
+
+//=====================================================================================================//
+/////  JSON PRODUTOS      ///////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================//
+
+const carregarProdutos = () => {
+    const dados2 = fs.readFileSync(path.join(__dirname, "./data/produtos.json"), 'utf-8');
+    return JSON.parse(dados2);
+};
+
+const salvarProdutos = (produtos) => {
+    fs.writeFileSync(path.join(__dirname, './data/produtos.json'), JSON.stringify(produtos, null, 2));
+};
+
+let produtos = carregarProdutos();
+
+const reorganizarIDsProd = () => {
+    produtos.forEach((produto, index) => {
+    produto.id = index + 1;
+    });
+
+    salvarProdutos(produtos); 
+};
+
+
+//=====================================================================================================//
+/////  JSON SERVIÇOS      ///////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================//
+
+const carregarServicos = () => {
+    const dados = fs.readFileSync(
+        path.join(__dirname, "./data/servicos.json"),
+        "utf-8"
+    );
+    return JSON.parse(dados); // <- espera lista []
+};
+
+const salvarServicos = (servicos) => {
+    fs.writeFileSync(
+        path.join(__dirname, "./data/servicos.json"),
+        JSON.stringify(servicos, null, 2)
+    );
+};
+
+let servicos = carregarServicos();
+
+const reorganizarIDsServ = () => {
+    servicos.forEach((servico, index) => {
+        servico.id = index + 1; // IDs sequenciais
+    });
+
+    salvarServicos(servicos);
+};
+
+//=====================================================================================================//
 app.get('/', (req, res) => {
     res.render('lobby');
 });
+
+app.listen(port, () => { 
+    console.log(`Servidor em execução: http://localhost:${port}`); 
+        });
+//=====================================================================================================//
+
+
+
+//=====================================================================================================//
+/////  CRUD DAS PESSOAS   ///////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================//
 
 app.get('/homePessoas', (req, res) => {
     res.render('homePessoas');
@@ -105,151 +177,175 @@ app.post('/pessoas/excluir/:id', (req,res) =>{
     res.redirect('/pessoas');
 });
 
+//======================================================================================================//
+///// CRUD DAS BICICLETAS  /////////////////////////////////////////////////////////////////////////////// 
+//======================================================================================================//
 
 app.get('/homeBicicletas', (req, res) => {
-    res.render('homePessoas');
+    res.render('homeBike');
 });
+
 
 app.get('/bicicletas', (req, res) =>{
-    res.render('listarPessoas', { pessoas });
+    res.render('listarBike', { produtos });
 });
+
 
 app.get('/bicicletas/nova', (req,res) => {
-    res.render('cadastrarPessoa')
+    res.render('cadastrarBike');
 });
+
 
 app.post('/bicicletas', (req,res) => {
-    const { pessoa } = req.body;
-    const { senha } = req.body;
-    const { idade } = req.body;
-    const novaPessoa = {id: pessoas.length + 1, pessoa, senha, idade};
-    pessoas.push(novaPessoa);
+    const { nome, preco, cor, descricao } = req.body;
+    const novoProduto = {
+        id: produtos.length + 1,
+        nome,
+        descricao,
+        preco,
+        cor
+    };
 
-    salvarPessoas(pessoas);
+    produtos.push(novoProduto);
+
+    salvarProdutos(produtos);
     
-    res.render('listarPessoas', { pessoas })
-    
+    res.render('listarBike', { produtos });
 });
+
 
 app.get('/bicicletas/ver/:id', (req,res) => {
     const id = parseInt(req.params.id);
-    const pessoa = pessoas.find(p => p.id === id);
-    if (!pessoa) return res.status(404).send('Pesssoa não encontrada');
+    const produto = produtos.find(p => p.id === id);
+    if (!produto) return res.status(404).send('Bicicleta não encontrada');
 
-    res.render('detalharPessoa', { pessoa });
+    res.render('detalharBike', { produto });
 });
+
 
 app.get('/bicicletas/:id/editar', (req,res) => {
     const id = parseInt(req.params.id);
-    const pessoa = pessoas.find(p => p.id === id);
-    if (!pessoa) return res.status(404).send('Pesssoa não encontrada');
-    res.render('editarPessoa', { pessoa });
+    const produto = produtos.find(p => p.id === id);
+    if (!produto) return res.status(404).send('Bicicleta não encontrada');
+
+    res.render('editarBike', { produto });
 });
+
 
 app.post('/bicicletas/:id/editar/', (req,res) => {
     const id = parseInt(req.params.id);
-    const pessoa = pessoas.find(p => p.id === id);  
+    const produto = produtos.find(p => p.id === id);  
     
-    if (!pessoa) return res.status(404).send('Pesssoa não encontrada');
+    if (!produto) return res.status(404).send('Bicicleta não encontrada');
 
-    pessoa.pessoa = req.body.pessoa;
-    pessoa.senha = req.body.senha;
+    produto.nome = req.body.nome;
+    produto.descricao = req.body.descrição;
+    produto.preco = req.body.preco;
+    produto.cor = req.body.cor;
 
-    salvarPessoas(pessoas);
+    salvarProdutos(produtos);
 
-    res.render('listarPessoas', { pessoas });
-
-    
+    res.render('listarBike', { produtos });
 });
+
 
 app.post('/bicicletas/excluir/:id', (req,res) =>{
     const id = parseInt(req.params.id);
-    const index = pessoas.findIndex(p => p.id === id);
+    const index = produtos.findIndex(p => p.id === id);
 
-    if (index === -1) return res.status(404).send('Pesssoa não encontrada');
+    if (index === -1) return res.status(404).send('Bicicleta não encontrada');
 
-    pessoas.splice(index, 1);
+    produtos.splice(index, 1);
 
-    salvarPessoas(pessoas);
+    salvarProdutos(produtos);
 
-    reorganizarIDs()
+    reorganizarIDsProd();
 
-    res.redirect('/pessoas');
+    res.redirect('/bicicletas');
 });
 
+
+//======================================================================================================//
+/////   CRUD DOS SERVIÇOS  ///////////////////////////////////////////////////////////////////////////////
+//======================================================================================================//
 
 app.get('/homeServicos', (req, res) => {
-    res.render('homePessoas');
+    res.render('homeServicos');
 });
 
-app.get('/servicos', (req, res) =>{
-    res.render('listarPessoas', { pessoas });
+
+app.get('/servicos', (req, res) => {
+    res.render('listarServicos', { servicos });
 });
 
-app.get('/servicos/nova', (req,res) => {
-    res.render('cadastrarPessoa')
+
+app.get('/servicos/novo', (req, res) => {
+    res.render('cadastrarServico');
 });
 
-app.post('/servicos', (req,res) => {
-    const { pessoa } = req.body;
-    const { senha } = req.body;
-    const { idade } = req.body;
-    const novaPessoa = {id: pessoas.length + 1, pessoa, senha, idade};
-    pessoas.push(novaPessoa);
 
-    salvarPessoas(pessoas);
-    
-    res.render('listarPessoas', { pessoas })
-    
+app.post('/servicos', (req, res) => {
+    const { nome, descricao, preco } = req.body;
+
+    const novoServico = {
+        id: servicos.length + 1,
+        nome,
+        descricao,
+        preco
+    };
+
+    servicos.push(novoServico);
+    salvarServicos(servicos);
+
+    res.render('listarServicos', { servicos });
 });
 
-app.get('/servicos/ver/:id', (req,res) => {
+
+app.get('/servicos/ver/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    const pessoa = pessoas.find(p => p.id === id);
-    if (!pessoa) return res.status(404).send('Pesssoa não encontrada');
+    const servico = servicos.find(s => s.id === id);
 
-    res.render('detalharPessoa', { pessoa });
+    if (!servico) return res.status(404).send("Serviço não encontrado");
+
+    res.render('detalharServico', { servico });
 });
 
-app.get('/servicos/:id/editar', (req,res) => {
+
+app.get('/servicos/:id/editar', (req, res) => {
     const id = parseInt(req.params.id);
-    const pessoa = pessoas.find(p => p.id === id);
-    if (!pessoa) return res.status(404).send('Pesssoa não encontrada');
-    res.render('editarPessoa', { pessoa });
+    const servico = servicos.find(s => s.id === id);
+
+    if (!servico) return res.status(404).send("Serviço não encontrado");
+
+    res.render('editarServico', { servico });
 });
 
-app.post('/servicos/:id/editar/', (req,res) => {
+
+app.post('/servicos/:id/editar', (req, res) => {
     const id = parseInt(req.params.id);
-    const pessoa = pessoas.find(p => p.id === id);  
-    
-    if (!pessoa) return res.status(404).send('Pesssoa não encontrada');
+    const servico = servicos.find(s => s.id === id);
 
-    pessoa.pessoa = req.body.pessoa;
-    pessoa.senha = req.body.senha;
+    if (!servico) return res.status(404).send("Serviço não encontrado");
 
-    salvarPessoas(pessoas);
+    servico.nome = req.body.nome;
+    servico.descricao = req.body.descricao;
+    servico.preco = req.body.preco;
 
-    res.render('listarPessoas', { pessoas });
+    salvarServicos(servicos);
 
-    
+    res.render('listarServicos', { servicos });
 });
 
-app.post('/servicos/excluir/:id', (req,res) =>{
+
+app.post('/servicos/excluir/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    const index = pessoas.findIndex(p => p.id === id);
+    const index = servicos.findIndex(s => s.id === id);
 
-    if (index === -1) return res.status(404).send('Pesssoa não encontrada');
+    if (index === -1) return res.status(404).send("Serviço não encontrado");
 
-    pessoas.splice(index, 1);
+    servicos.splice(index, 1);
+    reorganizarIDsServ();
+    salvarServicos(servicos);
 
-    salvarPessoas(pessoas);
-
-    reorganizarIDs()
-
-    res.redirect('/pessoas');
+    res.redirect('/servicos');
 });
-
-app.listen(port, () => {
-    console.log(`Servidor em execução: http://localhost:${port}`);
-});
-

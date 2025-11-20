@@ -1,0 +1,77 @@
+
+:root {
+    --fundo: #f2e9d8;
+    --painel: #fff7e6;
+    --texto: #5a544b;
+    --botao: #e6d5b8;
+    --botao-hover: #d9c6a5;
+    --borda: #b6a792;
+}
+
+
+body {
+    background: var(--fundo);
+    font-family: "Courier New", monospace;
+    margin: 0;
+    padding: 0;
+    color: var(--texto);
+}
+
+
+header {
+    background: var(--painel);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--borda);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+
+
+main {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: var(--painel);
+    padding: 20px;
+    width: 250px;
+    border: 4px solid var(--borda);
+    border-radius: 6px;
+    box-shadow: 4px 4px 0px var(--borda);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 3px solid var(--borda);
+    background: var(--botao);
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px var(--borda);
+    border-radius: 3px;
+}
+
+button:hover {
+    background: var(--botao-hover);
+}
+
+button:active {
+    box-shadow: 0px 0px 0px var(--borda);
+    transform: translate(3px, 3px);
+}

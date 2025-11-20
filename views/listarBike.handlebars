@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Lista de Pessoas</h2>
+    <h2>Lista de bicicletas, skates, patinetes e afins!</h2>
 
     <ul>
-        {{#each pessoas}}
+        {{#each produtos}}
             <li>
-                <a href="/pessoas/ver/{{id}}">{{pessoa}}</a>
-                <a href="/pessoas/{{id}}/editar">editar</a>
-                <form action="/pessoas/excluir/{{id}}" method="POST" style="display:inline;">
+                <a href="/bicicletas/ver/{{id}}">{{nome}}</a>
+                <a href="/bicicletas/{{id}}/editar">editar</a>
+                <form action="/bicicletas/excluir/{{id}}" method="POST" style="display:inline;">
                     <button type="submit" onclick="return confirm('confirma exclusão?')"> 
                         excluir
                     </button>
@@ -23,6 +23,6 @@
         {{/each}}
     </ul>
 
-    <a href="/homePessoas">Voltar</a>
+    <a href="/homeBicicletas">Voltar</a>
 </body>
 </html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Editar serviço</h2>
+
+    <form action="/servicos/{{servico.id}}/editar" method="post">
+        <input type="text" name="nome" value="{{servico.nome}}" required>
+        <input type="text" name="descricao" value="{{servico.descricao}}" required>
+        <input type="text" name="preco" value="{{servico.preco}}" required>
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="/servicos">Voltar</a>
+</body>
+</html>

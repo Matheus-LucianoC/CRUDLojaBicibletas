@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bem-vindo ao CRUD de Pessoas</h1>
-    <nav>
-        <a href="/pessoas">Listar Pessoas</a>
-        <br>
-        <a href="/pessoas/nova">Nova Pessoa</a>
-        <br>
-        <a href="/">Voltar ao menu de Gerenciamento</a>
-    </nav>
+    <h2>Detalhes do serviço</h2>
+    
+    <p><strong>Nome:</strong> {{servico.nome}}</p>
+    <p><strong>descrição:</strong> {{servico.descricao}}</p>
+    <p><strong>preço:</strong> {{servico.preco}}</p>
+
+    <a href="/servicos">Voltar</a>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Editar Produto</h2>
+
+    <form action="/bicicletas/{{produto.id}}/editar" method="post">
+        <input type="text" name="nome" value="{{produto.nome}}" required>
+        <input type="text" name="descrição" value="{{produto.descricao}}" required>
+        <input type="text" name="preco" value="{{produto.preco}}" required>
+        <input type="text" name="cor" value="{{produto.cor}}" required>
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="/bicicletas">Voltar</a>
+</body>
+</html>
