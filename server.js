@@ -8,6 +8,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 const path = require('path');
 app.set('views', path.join(__dirname, 'views')); 
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.engine('handlebars', exphbs.engine({ defaultLayout: false}));
 app.set('view engine', 'handlebars');
