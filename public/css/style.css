@@ -60,6 +60,16 @@ main {
     box-shadow: 4px 4px 0px #b6a792;
 }
 
+.card2 {
+    background: #fff7e6;
+    padding: 20px;
+    width: 300px;
+    border: 4px solid #b6a792;
+    border-radius: 6px;
+    box-shadow: 4px 4px 0px #b6a792;
+}
+
+
 .card h2 {
     margin-top: 0;
 }
@@ -77,6 +87,19 @@ button {
     border-radius: 3px;
 }
 
+input {
+    width: 100%;
+    margin-top: 15px;
+    padding: 3px;
+    border: 3px solid #e6d5b8;
+    background: #b6a792;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px #b6a792;
+    border-radius: 1.5px;
+}
+
 button:hover {
     background: #d9c6a5;
 }
@@ -91,4 +114,38 @@ button:active {
     flex-direction: row;
     gap: 10px;
     justify-content: space-around;
+}
+
+.lista-retro {
+    padding: 0;
+    margin: 0;
+    
+}
+
+.item-retro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff7e6;
+    border: 3px solid #b6a792;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 0px #b6a792;
+
+}
+
+.item-info {
+    font-size: 1.1rem;
+}
+
+.link-retro {
+    color: #5a544b;
+    font-weight: bold;
+}
+
+
+.item-buttons {
+    display: flex;
+    justify-content: space-between;
 }

@@ -6,23 +6,33 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-    <h2>Lista de Pessoas</h2>
-
-    <ul>
-        {{#each pessoas}}
-            <li>
-                <a href="/pessoas/ver/{{id}}">{{pessoa}}</a>
-                <a href="/pessoas/{{id}}/editar">editar</a>
-                <form action="/pessoas/excluir/{{id}}" method="POST" style="display:inline;">
-                    <button type="submit" onclick="return confirm('confirma exclusão?')"> 
-                        excluir
-                    </button>
+    <header>
+        <h1>Pessoas cadastradas</h1>
+    </header>
+    <main>
+        <div class="card2">
+        <ul class="lista-retro"></ul>
+            {{#each pessoas}}
+                <li class="item-retro">
+                <div class="item-info">
+                <a class="link-retro" href="/pessoas/ver/{{id}}">
+                {{pessoa}}
+                </a>
+                </div>
+                <div class="item-buttons">
+                <a class="btn" href="/pessoas/{{id}}/editar">editar</a>
+                <form action="/pessoas/excluir/{{id}}" method="POST">
+                <button type="submit" onclick="return confirm('confirma exclusão?')">Excluir</button>
                 </form>
-            </li> 
-        {{/each}}
-    </ul>
+                </div>
+                </li> 
+            {{/each}}
+        </ul>
+        <a class="btn" href="/homePessoas">Voltar</a>
+        </div>
+    </main>
 
-    <a href="/homePessoas">Voltar</a>
 </body>
 </html>

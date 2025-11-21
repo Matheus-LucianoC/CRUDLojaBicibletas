@@ -2,7 +2,7 @@
   {
     "id": 1,
     "nome": "Alugar bicicleta ",
-    "descricao": "Aluguel de bicicleta para passeio por dia",
+    "descricao": "Um aluguel de preço por dia",
     "preco": "70"
   },
   {
@@ -14,6 +14,7 @@
   {
     "id": 3,
     "nome": "Reparos gerais",
-    "preco": "600"
+    "preco": "600",
+    "descricao": "Reparos para todos os tipos de produtos"
   }
 ]

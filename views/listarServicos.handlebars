@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de Bicicletas</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-    <h2>Lista de serviços!</h2>
-
-    <ul>
-        {{#each servicos}}
-            <li>
-                <a href="/servicos/ver/{{id}}">{{nome}}</a>
-                <a href="/servicos/{{id}}/editar">editar</a>
-                <form action="/servicos/excluir/{{id}}" method="POST" style="display:inline;">
-                    <button type="submit" onclick="return confirm('confirma exclusão?')"> 
-                        excluir
-                    </button>
+    <header>
+        <h1>Serviços</h1>
+    </header>
+    <main>
+        <div class="card2">
+        <ul class="lista-retro">
+            {{#each servicos}}
+                <li class="item-retro">
+                <div class="item-info">
+                <a class="link-retro" href="/servicos/ver/{{id}}">
+                {{nome}}
+                </a>
+                </div>
+                <div class="item-buttons">
+                <a class="btn" href="/servicos/{{id}}/editar">Editar</a>
+                <form action="/servicos/excluir/{{id}}" method="POST">
+                <button class="btn" type="submit" onclick="return confirm('confirma exclusão?')">Excluir</button>
                 </form>
-            </li> 
-        {{/each}}
-    </ul>
+                </div>
+                </li>
+            {{/each}}
+        </ul>
+        <a class="btn" href="/homeServicos">Voltar</a>
+        </div>
+    </main>
 
-    <a href="/homeServicos">Voltar</a>
 </body>
 </html>

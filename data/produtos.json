@@ -5,5 +5,19 @@
     "descricao": "Uma bicicleta esportiva muito boa e duradoura",
     "preco": "1200",
     "cor": "azul"
+  },
+  {
+    "id": 2,
+    "nome": "Skate Mormaii",
+    "descricao": "Um skate seminovo",
+    "preco": "280",
+    "cor": "branco"
+  },
+  {
+    "id": 3,
+    "nome": "Patinete Honeywhale",
+    "descricao": "Um patinete customizado de alta performance",
+    "preco": "984",
+    "cor": "roxo"
   }
 ]

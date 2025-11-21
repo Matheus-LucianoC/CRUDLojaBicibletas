@@ -7,14 +7,22 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h2>Editar Pessoa</h2>
-
+    <header>
+    <h2>Editar Produto</h2>
+    </header>
+    <main>
+    <div class="card"> 
     <form action="/pessoas/{{pessoa.id}}/editar" method="post">
+        <h3> Nome </h3>
         <input type="text" name="pessoa" value="{{pessoa.pessoa}}" required>
+        <h3> Senha </h3>
         <input type="text" name="senha" value="{{pessoa.senha}}" required>
+        <h3> Idade </h3>
+        <input type="text" name="idade" value="{{pessoa.idade}}" required>
         <button type="submit">Salvar</button>
     </form>
-
-    <a href="/pessoas">Voltar</a>
+    <a class="btn" href="/pessoas">Voltar</a>
+    </div>
+    </main>
 </body>
 </html>

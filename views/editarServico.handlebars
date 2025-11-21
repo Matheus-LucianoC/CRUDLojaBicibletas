@@ -7,15 +7,22 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h2>Editar serviço</h2>
-
+    <header>
+    <h2>Editar Serviço</h2>
+    </header>
+    <main>
+    <div class="card"> 
     <form action="/servicos/{{servico.id}}/editar" method="post">
+        <h3> nome </h3>
         <input type="text" name="nome" value="{{servico.nome}}" required>
+        <h3> descrição </h3>
         <input type="text" name="descricao" value="{{servico.descricao}}" required>
+        <h3> preço </h3>
         <input type="text" name="preco" value="{{servico.preco}}" required>
         <button type="submit">Salvar</button>
     </form>
-
-    <a href="/servicos">Voltar</a>
+    <a class="btn" href="/servicos">Voltar</a>
+    </div>
+    </main>
 </body>
 </html>

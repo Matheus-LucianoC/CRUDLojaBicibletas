@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <header>
     <h2>Cadastrar Produto</h2>
+    </header>
+    <main>
+    <div class="card">
     <form action="/bicicletas" method="POST">
     <input type="text" name="nome" placeholder="Nome e marca do produto" required>
     <input type="text" name="descricao" placeholder="Descrição do produto" required>
@@ -16,6 +20,8 @@
     <button type="submit">Salvar</button>
     </form>
 
-    <a href="/homeBicicletas">Voltar</a>
+    <a class="btn" href="/homeBicicletas">Voltar</a>
+    </div>
+    </main>
 </body>
 </html>

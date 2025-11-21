@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <header>
     <h2>Cadastrar Serviço</h2>
+    </header>
+    <main>
+    <div class="card">
     <form action="/servicos" method="POST">
     <input type="text" name="nome" placeholder="Nome do serviço" required>
     <input type="text" name="descricao" placeholder="Descrição do serviço" required>
@@ -15,6 +19,8 @@
     <button type="submit">Salvar</button>
     </form>
 
-    <a href="/homeServicos">Voltar</a>
+    <a class="btn" href="/homeServicos">Voltar</a>
+    </div>
+    </main>
 </body>
 </html>

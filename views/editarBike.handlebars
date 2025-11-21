@@ -7,16 +7,24 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <header>
     <h2>Editar Produto</h2>
-
+    </header>
+    <main>
+    <div class="card"> 
     <form action="/bicicletas/{{produto.id}}/editar" method="post">
+        <h3> nome </h3>
         <input type="text" name="nome" value="{{produto.nome}}" required>
+        <h3> descrição </h3>
         <input type="text" name="descrição" value="{{produto.descricao}}" required>
+        <h3> preço </h3>
         <input type="text" name="preco" value="{{produto.preco}}" required>
+        <h3> cor </h3>
         <input type="text" name="cor" value="{{produto.cor}}" required>
         <button type="submit">Salvar</button>
     </form>
-
-    <a href="/bicicletas">Voltar</a>
+    <a class="btn" href="/bicicletas">Voltar</a>
+    </div>
+    </main>
 </body>
 </html>
